@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { UserContext } from "./Root";
+
 function Home() {
-  return <h2>Hello</h2>;
+  const user = useContext(UserContext);
+  return <h2>Hello {user?.username} </h2>;
 }
 
 export default Home;
