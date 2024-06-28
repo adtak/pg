@@ -1,5 +1,5 @@
 import "@aws-amplify/ui-react/styles.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import Root from "./components/Pages/Root";
 import Home from "./components/Pages/Home";
 import Upload from "./components/Pages/Upload";
@@ -13,6 +13,7 @@ function App() {
     {
       path: "/",
       element: <Root />,
+      handle: { crumb: () => <Link to="/">Home</Link> },
       children: [
         {
           index: true,
@@ -21,6 +22,7 @@ function App() {
         {
           path: "upload",
           element: <Upload />,
+          handle: { crumb: () => <Link to="/upload">Upload</Link> },
         },
       ],
     },
