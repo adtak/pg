@@ -1,4 +1,4 @@
-import { ResourcesConfig } from "@aws-amplify/core";
+import type { ResourcesConfig } from "@aws-amplify/core";
 
 // https://docs.amplify.aws/javascript/build-a-backend/auth/use-existing-cognito-resources
 const config: ResourcesConfig = {

@@ -1,7 +1,5 @@
-import { createContext } from "react";
-import { Outlet, useMatches } from "react-router-dom";
 import { Authenticator } from "@aws-amplify/ui-react";
-import { AuthUser } from "aws-amplify/auth";
+import { NavigateNext } from "@mui/icons-material";
 import {
   AppBar,
   Box,
@@ -12,7 +10,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { NavigateNext } from "@mui/icons-material";
+import type { AuthUser } from "aws-amplify/auth";
+import { createContext } from "react";
+import { Outlet, useMatches } from "react-router-dom";
 
 export const UserContext = createContext<AuthUser | undefined>(undefined);
 
@@ -51,7 +51,8 @@ function Root() {
                 separator={<NavigateNext fontSize="small" />}
               >
                 {crumbs.map((crumb, index) => (
-                  <li key={index}>{crumb()}</li>
+                  // biome-ignore lint/suspicious/noArrayIndexKey:
+                  <li key={`crumb-${index}`}>{crumb()}</li>
                 ))}
               </Breadcrumbs>
               <UserContext.Provider value={user}>
