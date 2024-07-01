@@ -1,10 +1,7 @@
 import { NavigateNext } from "@mui/icons-material";
 import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
 import { useMatches } from "react-router-dom";
-
-type HandleType = {
-  crumb: () => React.ReactNode;
-};
+import type { HandleType } from "../../App";
 
 function Breadcrumbs() {
   const handles = useMatches()

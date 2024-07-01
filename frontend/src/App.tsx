@@ -50,7 +50,7 @@ function App() {
   );
 }
 
-type HandleType = {
+export type HandleType = {
   crumb: () => React.ReactNode;
 };
 
