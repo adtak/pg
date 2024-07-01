@@ -1,6 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "./Root";
 
 function Home() {
@@ -34,12 +35,12 @@ function Home() {
       </Typography>
       <Grid container spacing={2} sx={{ mb: 1 }}>
         <Grid item xs={6}>
-          <Button variant="contained" fullWidth href="/upload">
+          <Button variant="contained" fullWidth component={Link} to="/upload">
             Upload
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button variant="contained" fullWidth href="/download">
+          <Button variant="contained" fullWidth component={Link} to="/download">
             Download
           </Button>
         </Grid>

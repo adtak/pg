@@ -1,8 +1,8 @@
 import "@aws-amplify/ui-react/styles.css";
 import HomeIcon from "@mui/icons-material/Home";
-import { Link } from "@mui/material";
+import { Link as MuiLink } from "@mui/material";
 import { Amplify } from "aws-amplify";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import config from "./amplify-config";
 import Download from "./components/Pages/Download";
 import Home from "./components/Pages/Home";
@@ -18,15 +18,16 @@ function App() {
       element: <Root />,
       handle: {
         crumb: () => (
-          <Link
-            href="/"
+          <MuiLink
+            component={Link}
+            to="/"
             underline="hover"
             sx={{ display: "flex", alignItems: "center" }}
             color="inherit"
           >
             <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Home
-          </Link>
+          </MuiLink>
         ),
       },
       children: [
@@ -39,14 +40,15 @@ function App() {
           element: <Upload />,
           handle: {
             crumb: () => (
-              <Link
-                href="/upload"
+              <MuiLink
+                component={Link}
+                to="/upload"
                 underline="hover"
                 sx={{ display: "flex", alignItems: "center" }}
                 color="inherit"
               >
                 Upload
-              </Link>
+              </MuiLink>
             ),
           },
         },
@@ -55,14 +57,15 @@ function App() {
           element: <Download />,
           handle: {
             crumb: () => (
-              <Link
-                href="/download"
+              <MuiLink
+                component={Link}
+                to="/download"
                 underline="hover"
                 sx={{ display: "flex", alignItems: "center" }}
                 color="inherit"
               >
                 Download
-              </Link>
+              </MuiLink>
             ),
           },
         },
