@@ -16,20 +16,15 @@ function App() {
     {
       path: "/",
       element: <Root />,
-      handle: {
-        crumb: () => (
-          <MuiLink
-            component={Link}
-            to="/"
-            underline="hover"
-            sx={{ display: "flex", alignItems: "center" }}
-            color="inherit"
-          >
+      handle: createHundle({
+        to: "/",
+        inner: (
+          <>
             <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Home
-          </MuiLink>
+          </>
         ),
-      },
+      }),
       children: [
         {
           index: true,
@@ -38,36 +33,12 @@ function App() {
         {
           path: "upload",
           element: <Upload />,
-          handle: {
-            crumb: () => (
-              <MuiLink
-                component={Link}
-                to="/upload"
-                underline="hover"
-                sx={{ display: "flex", alignItems: "center" }}
-                color="inherit"
-              >
-                Upload
-              </MuiLink>
-            ),
-          },
+          handle: createHundle({ to: "/upload", inner: "Upload" }),
         },
         {
           path: "download",
           element: <Download />,
-          handle: {
-            crumb: () => (
-              <MuiLink
-                component={Link}
-                to="/download"
-                underline="hover"
-                sx={{ display: "flex", alignItems: "center" }}
-                color="inherit"
-              >
-                Download
-              </MuiLink>
-            ),
-          },
+          handle: createHundle({ to: "/download", inner: "Download" }),
         },
       ],
     },
@@ -78,5 +49,28 @@ function App() {
     </>
   );
 }
+
+type HandleType = {
+  crumb: () => React.ReactNode;
+};
+
+const createHundle = ({
+  to,
+  inner,
+}: { to: string; inner: React.ReactNode }): HandleType => {
+  return {
+    crumb: () => (
+      <MuiLink
+        component={Link}
+        to={to}
+        underline="hover"
+        sx={{ display: "flex", alignItems: "center" }}
+        color="inherit"
+      >
+        {inner}
+      </MuiLink>
+    ),
+  };
+};
 
 export default App;
