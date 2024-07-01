@@ -1,13 +1,13 @@
 import "@aws-amplify/ui-react/styles.css";
-import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
-
-import Root from "./components/Pages/Root";
+import { Link } from "@mui/material";
+import { Amplify } from "aws-amplify";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import config from "./amplify-config";
 import Home from "./components/Pages/Home";
+import Root from "./components/Pages/Root";
 import Upload from "./components/Pages/Upload";
 
-import { Amplify } from "aws-amplify";
-import config from "./amplify-config";
 Amplify.configure(config);
 
 function App() {
@@ -17,7 +17,12 @@ function App() {
       element: <Root />,
       handle: {
         crumb: () => (
-          <Link to="/">
+          <Link
+            href="/"
+            underline="hover"
+            sx={{ display: "flex", alignItems: "center" }}
+            color="inherit"
+          >
             <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Home
           </Link>
@@ -31,7 +36,18 @@ function App() {
         {
           path: "upload",
           element: <Upload />,
-          handle: { crumb: () => <Link to="/upload">Upload</Link> },
+          handle: {
+            crumb: () => (
+              <Link
+                href="/upload"
+                underline="hover"
+                sx={{ display: "flex", alignItems: "center" }}
+                color="inherit"
+              >
+                Upload
+              </Link>
+            ),
+          },
         },
       ],
     },
