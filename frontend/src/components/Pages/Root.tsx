@@ -1,18 +1,10 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import { NavigateNext } from "@mui/icons-material";
-import {
-  AppBar,
-  Box,
-  Breadcrumbs,
-  Button,
-  Container,
-  CssBaseline,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Breadcrumbs, Container, CssBaseline } from "@mui/material";
 import type { AuthUser } from "aws-amplify/auth";
 import { createContext } from "react";
 import { Outlet, useMatches } from "react-router-dom";
+import Header from "../Presentational/Header";
 
 export const UserContext = createContext<AuthUser | undefined>(undefined);
 
@@ -32,18 +24,7 @@ function Root() {
       {({ user, signOut }) => (
         <>
           <CssBaseline />
-          <Box>
-            <AppBar position="static">
-              <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  Image Drawer
-                </Typography>
-                <Button color="inherit" onClick={signOut}>
-                  SignOut
-                </Button>
-              </Toolbar>
-            </AppBar>
-          </Box>
+          <Header signOut={signOut} />
           <Box sx={{ mt: 2 }}>
             <Container maxWidth="md">
               <Breadcrumbs
