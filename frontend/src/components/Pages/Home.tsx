@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useContext } from "react";
 import { UserContext } from "./Root";
@@ -28,10 +28,22 @@ function Home() {
     createData(7, "2024-07-01 13:45:22", "sample_1.png", "Done"),
   ];
   return (
-    <Box>
-      <Typography variant="subtitle1" component="div" sx={{ ml: 1 }}>
+    <>
+      <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
         Hello {user?.username}
       </Typography>
+      <Grid container spacing={2} sx={{ mb: 1 }}>
+        <Grid item xs={6}>
+          <Button variant="contained" fullWidth href="/upload">
+            Upload
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button variant="contained" fullWidth href="/download">
+            Download
+          </Button>
+        </Grid>
+      </Grid>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -42,7 +54,7 @@ function Home() {
         }}
         pageSizeOptions={[5, 10]}
       />
-    </Box>
+    </>
   );
 }
 
