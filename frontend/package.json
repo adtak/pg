@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "biome lint . --apply",
+    "lint": "biome lint . --write",
     "fmt": "prettier -w './**/*.{md,yml}' && biome format --write .",
     "preview": "vite preview"
   },
