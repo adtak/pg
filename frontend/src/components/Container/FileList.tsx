@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 function FileList() {
@@ -8,16 +9,18 @@ function FileList() {
     { field: "status", headerName: "Status", width: 100 },
   ];
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      initialState={{
-        pagination: {
-          paginationModel: { page: 0, pageSize: 5 },
-        },
-      }}
-      pageSizeOptions={[5, 10]}
-    />
+    <Box sx={{ height: 400, width: "100%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10]}
+      />
+    </Box>
   );
 }
 
