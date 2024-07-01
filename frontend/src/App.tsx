@@ -1,5 +1,7 @@
 import "@aws-amplify/ui-react/styles.css";
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+
 import Root from "./components/Pages/Root";
 import Home from "./components/Pages/Home";
 import Upload from "./components/Pages/Upload";
@@ -13,7 +15,14 @@ function App() {
     {
       path: "/",
       element: <Root />,
-      handle: { crumb: () => <Link to="/">Home</Link> },
+      handle: {
+        crumb: () => (
+          <Link to="/">
+            <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Home
+          </Link>
+        ),
+      },
       children: [
         {
           index: true,
