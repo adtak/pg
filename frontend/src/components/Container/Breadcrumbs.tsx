@@ -4,11 +4,7 @@ import { useMatches } from "react-router-dom";
 import type { HandleType } from "../../App";
 
 function Breadcrumbs() {
-  const handles = useMatches()
-    .filter((match) => Boolean(match.handle))
-    .map((match) => match.handle) as HandleType[];
-  const crumbs = handles.map((handle) => handle.crumb);
-
+  const { crumbs } = useBreadcrumbs();
   return (
     <MuiBreadcrumbs
       aria-label="breadcrumb"
@@ -21,5 +17,13 @@ function Breadcrumbs() {
     </MuiBreadcrumbs>
   );
 }
+
+const useBreadcrumbs = () => {
+  const handles = useMatches()
+    .filter((match) => Boolean(match.handle))
+    .map((match) => match.handle) as HandleType[];
+  const crumbs = handles.map((handle) => handle.crumb);
+  return { crumbs };
+};
 
 export default Breadcrumbs;
