@@ -49,7 +49,7 @@ function App() {
 }
 
 export type HandleType = {
-  crumb: () => React.ReactNode;
+  crumb: ({ index }: { index: number }) => React.ReactNode;
 };
 
 const createHundle = ({
@@ -57,13 +57,14 @@ const createHundle = ({
   inner,
 }: { to: string; inner: React.ReactNode }): HandleType => {
   return {
-    crumb: () => (
+    crumb: ({ index }) => (
       <MuiLink
         component={Link}
         to={to}
         underline="hover"
         sx={{ display: "flex", alignItems: "center" }}
         color="inherit"
+        key={index}
       >
         {inner}
       </MuiLink>

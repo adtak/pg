@@ -10,10 +10,7 @@ function Breadcrumbs() {
       aria-label="breadcrumb"
       separator={<NavigateNext fontSize="small" />}
     >
-      {crumbs.map((crumb, index) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey:
-        <li key={`crumb-${index}`}>{crumb()}</li>
-      ))}
+      {crumbs.map((crumb, index) => crumb({ index }))}
     </MuiBreadcrumbs>
   );
 }
