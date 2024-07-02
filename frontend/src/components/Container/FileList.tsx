@@ -6,7 +6,7 @@ function FileList() {
   const columns: GridColDef[] = [
     { field: "datetime", headerName: "Date Time", width: 180 },
     { field: "filename", headerName: "File Name", flex: 1 },
-    { field: "status", headerName: "Status", width: 100 },
+    { field: "status", headerName: "Status", width: 120 },
   ];
   return (
     <Box sx={{ height: 400, width: "100%" }}>
