@@ -5,6 +5,7 @@ import { Amplify } from "aws-amplify";
 import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import config from "./amplify-config";
 import Download from "./components/Pages/Download";
+import ErrorPage from "./components/Pages/Error";
 import Home from "./components/Pages/Home";
 import Root from "./components/Pages/Root";
 import Upload from "./components/Pages/Upload";
@@ -16,6 +17,7 @@ function App() {
     {
       path: "/",
       element: <Root />,
+      errorElement: <ErrorPage />,
       handle: createHundle({
         to: "/",
         inner: (
