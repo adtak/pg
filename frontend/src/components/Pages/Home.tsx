@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { useContext } from "react";
-import ButtonLink from "../Container/ButtonLink";
 import FileList from "../Container/FileList";
+import LinkButton from "../Container/LinkButton";
 import { UserContext } from "./Root";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
       <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
         Hello {user?.username}
       </Typography>
-      <ButtonLink />
+      <LinkButton />
       <FileList />
     </>
   );
