@@ -8,7 +8,7 @@ import Header from "../Container/Header";
 
 export const UserContext = createContext<AuthUser | undefined>(undefined);
 
-function Root() {
+export default function Root() {
   return (
     <Authenticator hideSignUp>
       {({ user, signOut }) => (
@@ -28,5 +28,3 @@ function Root() {
     </Authenticator>
   );
 }
-
-export default Root;

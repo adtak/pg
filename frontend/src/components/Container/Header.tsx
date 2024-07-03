@@ -1,7 +1,7 @@
 import type { AuthEventData } from "@aws-amplify/ui";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 
-function Header({
+export default function Header({
   signOut,
 }: { signOut: ((data?: AuthEventData | undefined) => void) | undefined }) {
   return (
@@ -17,5 +17,3 @@ function Header({
     </AppBar>
   );
 }
-
-export default Header;

@@ -3,7 +3,7 @@ import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
 import { useMatches } from "react-router-dom";
 import type { HandleType } from "../../App";
 
-function Breadcrumbs() {
+export default function Breadcrumbs() {
   const { crumbs } = useBreadcrumbs();
   return (
     <MuiBreadcrumbs
@@ -22,5 +22,3 @@ const useBreadcrumbs = () => {
   const crumbs = handles.map((handle) => handle.crumb);
   return { crumbs };
 };
-
-export default Breadcrumbs;

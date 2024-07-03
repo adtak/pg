@@ -4,7 +4,7 @@ import FileList from "../Container/FileList";
 import LinkButton from "../Container/LinkButton";
 import { UserContext } from "./Root";
 
-function Home() {
+export default function Home() {
   const user = useContext(UserContext);
   return (
     <>
@@ -16,5 +16,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

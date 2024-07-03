@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useRef } from "react";
 
-function UploadButton() {
+export default function UploadButton() {
   const { inputRef, onClickInput } = useUploadRef();
   return (
     <>
@@ -24,5 +24,3 @@ const useUploadRef = () => {
 const uploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
   console.log(event.target.files);
 };
-
-export default UploadButton;

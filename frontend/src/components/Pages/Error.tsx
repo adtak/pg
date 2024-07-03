@@ -1,7 +1,7 @@
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
-function ErrorPage() {
+export default function ErrorPage() {
   const errorMessage = useErrorText();
   return (
     <>
@@ -30,5 +30,3 @@ const useErrorText = () => {
   }
   return "Unknown Error";
 };
-
-export default ErrorPage;

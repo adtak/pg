@@ -12,7 +12,7 @@ import Upload from "./components/Pages/Upload";
 
 Amplify.configure(config);
 
-function App() {
+export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -71,5 +71,3 @@ const createHundle = ({
     ),
   };
 };
-
-export default App;

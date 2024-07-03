@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
-function FileList() {
+export default function FileList() {
   const rows = useFileList();
   const columns: GridColDef[] = [
     { field: "datetime", headerName: "Date Time", width: 180 },
@@ -44,5 +44,3 @@ const createData = (
 ) => {
   return { id, datetime, filename, status };
 };
-
-export default FileList;

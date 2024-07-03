@@ -1,7 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function LinkButton() {
+export default function LinkButton() {
   return (
     <Grid container spacing={2} sx={{ mb: 1 }}>
       <Grid item xs={6}>
@@ -17,5 +17,3 @@ function LinkButton() {
     </Grid>
   );
 }
-
-export default LinkButton;

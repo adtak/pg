@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import UploadButton from "../Container/UploadButton";
 
-function Upload() {
+export default function Upload() {
   return (
     <>
       <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
@@ -11,5 +11,3 @@ function Upload() {
     </>
   );
 }
-
-export default Upload;
