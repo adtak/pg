@@ -23,4 +23,5 @@ const useUploadRef = () => {
 
 const uploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
   console.log(event.target.files);
+  event.target.value = "";
 };
