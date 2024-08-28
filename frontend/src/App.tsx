@@ -7,6 +7,7 @@ import config from "./amplify-config";
 import Download from "./components/Pages/Download";
 import ErrorPage from "./components/Pages/Error";
 import Home from "./components/Pages/Home";
+import List from "./components/Pages/List";
 import Root from "./components/Pages/Root";
 import Upload from "./components/Pages/Upload";
 
@@ -41,6 +42,11 @@ export default function App() {
           path: "download",
           element: <Download />,
           handle: createHundle({ to: "/download", inner: "Download" }),
+        },
+        {
+          path: "list",
+          element: <List />,
+          handle: createHundle({ to: "/list", inner: "List" }),
         },
       ],
     },
