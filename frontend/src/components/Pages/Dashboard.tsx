@@ -8,11 +8,11 @@ type Album = {
   title: string;
 };
 
+const defaultAlbum: Album = { id: 0, userId: 0, title: "Unknown" };
+
 export default function Dashboard() {
-  const [albums, setAlbums] = useState([
-    { id: 0, userId: 0, title: "Unknown" },
-  ]);
-  const [activeAlbumId, setActiveAlbumId] = useState(0);
+  const [albums, setAlbums] = useState([defaultAlbum]);
+  const [activeAlbumId, setActiveAlbumId] = useState(defaultAlbum.id);
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setActiveAlbumId(newValue);
   };
