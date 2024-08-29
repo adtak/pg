@@ -2,7 +2,7 @@ import { Box, Card, CardContent, Tab, Tabs, Typography } from "@mui/material";
 import type React from "react";
 import { useState } from "react";
 
-export default function List() {
+export default function Dashboard() {
   const [value, setValue] = useState(0);
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

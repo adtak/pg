@@ -5,6 +5,11 @@ export default function LinkButton() {
   return (
     <Grid container spacing={2} sx={{ mb: 1 }}>
       <Grid item xs={4}>
+        <Button variant="contained" fullWidth component={Link} to="/dashboard">
+          Dashboard
+        </Button>
+      </Grid>
+      <Grid item xs={4}>
         <Button variant="contained" fullWidth component={Link} to="/upload">
           Upload
         </Button>
@@ -12,11 +17,6 @@ export default function LinkButton() {
       <Grid item xs={4}>
         <Button variant="contained" fullWidth component={Link} to="/download">
           Download
-        </Button>
-      </Grid>
-      <Grid item xs={4}>
-        <Button variant="contained" fullWidth component={Link} to="/list">
-          List
         </Button>
       </Grid>
     </Grid>

@@ -4,10 +4,10 @@ import { Link as MuiLink } from "@mui/material";
 import { Amplify } from "aws-amplify";
 import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import config from "./amplify-config";
+import Dashboard from "./components/Pages/Dashboard";
 import Download from "./components/Pages/Download";
 import ErrorPage from "./components/Pages/Error";
 import Home from "./components/Pages/Home";
-import List from "./components/Pages/List";
 import Root from "./components/Pages/Root";
 import Upload from "./components/Pages/Upload";
 
@@ -44,9 +44,9 @@ export default function App() {
           handle: createHundle({ to: "/download", inner: "Download" }),
         },
         {
-          path: "list",
-          element: <List />,
-          handle: createHundle({ to: "/list", inner: "List" }),
+          path: "dashboard",
+          element: <Dashboard />,
+          handle: createHundle({ to: "/dashboard", inner: "Dashboard" }),
         },
       ],
     },
