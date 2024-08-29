@@ -27,6 +27,9 @@ export default function Dashboard() {
   });
   return (
     <>
+      <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
+        Please select album
+      </Typography>
       <Tabs
         value={activeAlbumId}
         onChange={handleChange}
