@@ -34,7 +34,11 @@ export default function Dashboard() {
         scrollButtons
       >
         {albums.map((album) => (
-          <Tab key={album.id} value={album.id} label={album.title} />
+          <Tab
+            key={album.id}
+            value={album.id}
+            label={album.title.split(" ")[0]}
+          />
         ))}
       </Tabs>
       <Box>
