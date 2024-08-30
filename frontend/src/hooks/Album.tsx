@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import type { Album } from "../models/Album";
-
-const defaultAlbum: Album = { id: 0, userId: 0, title: "Unknown" };
+import { getDefaultAlbum, getFirstAlbum } from "../models/Album";
 
 const useAlbums = () => {
+  const [searchParams, _] = useSearchParams();
+  const userId = searchParams.get("userId") ?? "1";
+  const defaultAlbum = getDefaultAlbum();
   const [albums, setAlbums] = useState([defaultAlbum]);
   const [activeAlbumId, setActiveAlbumId] = useState(defaultAlbum.id);
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
@@ -11,13 +14,14 @@ const useAlbums = () => {
   };
   useEffect(() => {
     const fetchAlbums = async () => {
-      const url = "https://jsonplaceholder.typicode.com/albums/?userId=1";
+      const url = `https://jsonplaceholder.typicode.com/albums/?userId=${userId}`;
       const response = await fetch(url);
       const albums: Album[] = await response.json();
       setAlbums(albums);
+      setActiveAlbumId(getFirstAlbum(albums).id);
     };
     fetchAlbums();
-  });
+  }, [userId]);
   return { albums, activeAlbumId, handleChange };
 };
 
