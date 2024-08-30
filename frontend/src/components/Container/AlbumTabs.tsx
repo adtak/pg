@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "@mui/material";
-import type { Album } from "../../model/Album";
+import type { Album } from "../../models/Album";
 
 type TabsProps = {
   albums: Album[];
