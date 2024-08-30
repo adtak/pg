@@ -1,6 +1,7 @@
-import { Box, Card, CardContent, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import type React from "react";
 import { useEffect, useState } from "react";
+import AlbumTabs from "../Container/AlbumTabs";
 
 type Album = {
   id: number;
@@ -30,20 +31,11 @@ export default function Dashboard() {
       <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
         Please select album
       </Typography>
-      <Tabs
-        value={activeAlbumId}
-        onChange={handleChange}
-        variant="scrollable"
-        scrollButtons
-      >
-        {albums.map((album) => (
-          <Tab
-            key={album.id}
-            value={album.id}
-            label={album.title.split(" ")[0]}
-          />
-        ))}
-      </Tabs>
+      <AlbumTabs
+        albums={albums}
+        activeAlbumId={activeAlbumId}
+        handleChange={handleChange}
+      />
       <Box>
         <Card variant="outlined">
           <CardContent>
