@@ -7,7 +7,7 @@ const usePhoto = (albumId: number | undefined) => {
     ? `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
     : null;
   const { data, isLoading } = useSWR<Photo[]>(url, fetcher, {});
-  return { data, isLoading };
+  return { photos: data, isPhotosLoading: isLoading };
 };
 
 export { usePhoto };

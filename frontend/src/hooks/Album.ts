@@ -21,7 +21,12 @@ const useAlbums = () => {
     setActiveAlbumId(newValue);
   };
 
-  return { data, isLoading, activeAlbumId, handleChange };
+  return {
+    albums: data,
+    isAlbumsLoading: isLoading,
+    activeAlbumId,
+    handleChange,
+  };
 };
 
 export { useAlbums };

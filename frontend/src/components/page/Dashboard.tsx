@@ -12,13 +12,8 @@ import AlbumTabs from "../container/AlbumTabs";
 import PhotoList from "../container/PhotoList";
 
 export default function Dashboard() {
-  const {
-    data: albums,
-    isLoading: isAlbumsLoading,
-    activeAlbumId,
-    handleChange,
-  } = useAlbums();
-  const { data: photos, isLoading: isPhotosLoading } = usePhoto(activeAlbumId);
+  const { albums, isAlbumsLoading, activeAlbumId, handleChange } = useAlbums();
+  const { photos, isPhotosLoading } = usePhoto(activeAlbumId);
   if (isAlbumsLoading) {
     return (
       <Box sx={{ marginTop: "5rem", textAlign: "center" }}>
