@@ -4,13 +4,18 @@ type Album = {
   title: string;
 };
 
-const getDefaultAlbum = () => {
-  return { id: 0, userId: 0, title: "Unknown" };
+const unknownAlbum = { id: 0, userId: 0, title: "Unk" };
+
+const getAlbums = (albums: Album[]) => {
+  if (albums.length === 0) {
+    return [unknownAlbum];
+  }
+  return albums;
 };
 
 const getFirstAlbum = (albums: Album[]) => {
-  return albums[0] ?? getDefaultAlbum();
+  return getAlbums(albums)[0];
 };
 
 export type { Album };
-export { getDefaultAlbum, getFirstAlbum };
+export { getAlbums, getFirstAlbum };

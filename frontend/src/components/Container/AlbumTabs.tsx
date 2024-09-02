@@ -3,7 +3,7 @@ import type { Album } from "../../models/Album";
 
 type TabsProps = {
   albums: Album[];
-  activeAlbumId: number;
+  activeAlbumId: number | undefined;
   handleChange: (_: React.SyntheticEvent, newValue: number) => void;
 };
 
@@ -14,7 +14,7 @@ export default function AlbumTabs({
 }: TabsProps) {
   return (
     <Tabs
-      value={activeAlbumId}
+      value={activeAlbumId || false}
       onChange={handleChange}
       variant="scrollable"
       scrollButtons
