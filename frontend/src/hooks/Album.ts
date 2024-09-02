@@ -9,6 +9,7 @@ const useAlbums = () => {
   const userId = searchParams.get("userId") ?? "1";
   const url = `https://jsonplaceholder.typicode.com/albums/?userId=${userId}`;
   const { data, isLoading } = useSWRImmutable<Album[]>(url, fetcher, {
+    revalidateOnMount: true,
     onSuccess: (data) => setActiveAlbumId(data[0].id),
   });
   const [activeAlbumId, setActiveAlbumId] = useState<number | undefined>(
