@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { useContext } from "react";
-import FileList from "../Container/FileList";
-import LinkButton from "../Container/LinkButton";
+import FileList from "../container/FileList";
+import LinkButton from "../container/LinkButton";
 import { UserContext } from "./Root";
 
 export default function Home() {

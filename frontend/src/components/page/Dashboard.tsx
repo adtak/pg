@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { useAlbums } from "../../hooks/Album";
-import AlbumTabs from "../Container/AlbumTabs";
+import AlbumTabs from "../container/AlbumTabs";
 
 export default function Dashboard() {
   const { albums, activeAlbumId, handleChange } = useAlbums();

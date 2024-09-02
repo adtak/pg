@@ -4,12 +4,12 @@ import { Link as MuiLink } from "@mui/material";
 import { Amplify } from "aws-amplify";
 import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import config from "./amplify-config";
-import Dashboard from "./components/Pages/Dashboard";
-import Download from "./components/Pages/Download";
-import ErrorPage from "./components/Pages/Error";
-import Home from "./components/Pages/Home";
-import Root from "./components/Pages/Root";
-import Upload from "./components/Pages/Upload";
+import Dashboard from "./components/page/Dashboard";
+import Download from "./components/page/Download";
+import ErrorPage from "./components/page/Error";
+import Home from "./components/page/Home";
+import Root from "./components/page/Root";
+import Upload from "./components/page/Upload";
 
 Amplify.configure(config);
 
