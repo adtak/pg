@@ -3,8 +3,8 @@ import { Box, Container, CssBaseline } from "@mui/material";
 import type { AuthUser } from "aws-amplify/auth";
 import { createContext } from "react";
 import { Outlet } from "react-router-dom";
-import Breadcrumbs from "../Container/Breadcrumbs";
-import Header from "../Container/Header";
+import Breadcrumbs from "../container/Breadcrumbs";
+import Header from "../container/Header";
 
 export const UserContext = createContext<AuthUser | undefined>(undefined);
 

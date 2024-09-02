@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import UploadButton from "../Container/UploadButton";
+import UploadButton from "../container/UploadButton";
 
 export default function Upload() {
   return (
