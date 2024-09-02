@@ -3,49 +3,44 @@ import {
   Card,
   CardContent,
   CircularProgress,
-  ImageList,
-  ImageListItem,
   Typography,
 } from "@mui/material";
 import { useAlbums } from "../../hooks/Album";
+import { usePhoto } from "../../hooks/Photo";
 import { getAlbums } from "../../models/Album";
 import AlbumTabs from "../container/AlbumTabs";
+import PhotoList from "../container/PhotoList";
 
 export default function Dashboard() {
-  const { data, isLoading, activeAlbumId, handleChange } = useAlbums();
-  if (isLoading) {
+  const {
+    data: albums,
+    isLoading: isAlbumsLoading,
+    activeAlbumId,
+    handleChange,
+  } = useAlbums();
+  const { data: photos, isLoading: isPhotosLoading } = usePhoto(activeAlbumId);
+  if (isAlbumsLoading) {
     return (
       <Box sx={{ marginTop: "5rem", textAlign: "center" }}>
         <CircularProgress />
       </Box>
     );
   }
-  if (data) {
+  if (albums) {
     return (
       <>
         <Typography variant="subtitle1" component="div" sx={{ mt: 2, ml: 1 }}>
           Please select album
         </Typography>
         <AlbumTabs
-          albums={getAlbums(data)}
+          albums={getAlbums(albums)}
           activeAlbumId={activeAlbumId}
           handleChange={handleChange}
         />
         <Box>
           <Card variant="outlined">
             <CardContent>
-              <ImageList cols={5}>
-                {itemData.map((item) => (
-                  <ImageListItem key={item.thumbnailUrl}>
-                    <img
-                      srcSet={`${item.thumbnailUrl}`}
-                      src={`${item.thumbnailUrl}`}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                  </ImageListItem>
-                ))}
-              </ImageList>
+              <PhotoList photos={photos} isLoading={isPhotosLoading} />
             </CardContent>
           </Card>
         </Box>
@@ -53,5 +48,3 @@ export default function Dashboard() {
     );
   }
 }
-
-const itemData = [];
