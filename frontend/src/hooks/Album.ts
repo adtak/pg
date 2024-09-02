@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWRImmutable from "swr/immutable";
-import type { Album } from "../models/Album";
+import { type Album, getFirstAlbum } from "../models/Album";
 import { fetcher } from "../utils/fetcher";
 
 const useAlbums = () => {
@@ -10,7 +10,9 @@ const useAlbums = () => {
   const url = `https://jsonplaceholder.typicode.com/albums/?userId=${userId}`;
   const { data, isLoading } = useSWRImmutable<Album[]>(url, fetcher, {
     revalidateOnMount: true,
-    onSuccess: (data) => setActiveAlbumId(data[0].id),
+    onSuccess: (data) => {
+      setActiveAlbumId(getFirstAlbum(data).id);
+    },
   });
   const [activeAlbumId, setActiveAlbumId] = useState<number | undefined>(
     undefined,

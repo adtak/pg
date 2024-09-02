@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useAlbums } from "../../hooks/Album";
+import { getAlbums } from "../../models/Album";
 import AlbumTabs from "../container/AlbumTabs";
 
 export default function Dashboard() {
@@ -24,7 +25,7 @@ export default function Dashboard() {
           Please select album
         </Typography>
         <AlbumTabs
-          albums={data}
+          albums={getAlbums(data)}
           activeAlbumId={activeAlbumId}
           handleChange={handleChange}
         />
