@@ -3,6 +3,8 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  ImageList,
+  ImageListItem,
   Typography,
 } from "@mui/material";
 import { useAlbums } from "../../hooks/Album";
@@ -32,9 +34,18 @@ export default function Dashboard() {
         <Box>
           <Card variant="outlined">
             <CardContent>
-              <Typography variant="subtitle1" component="div">
-                This album id is {activeAlbumId}
-              </Typography>
+              <ImageList cols={5}>
+                {itemData.map((item) => (
+                  <ImageListItem key={item.thumbnailUrl}>
+                    <img
+                      srcSet={`${item.thumbnailUrl}`}
+                      src={`${item.thumbnailUrl}`}
+                      alt={item.title}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
             </CardContent>
           </Card>
         </Box>
@@ -42,3 +53,5 @@ export default function Dashboard() {
     );
   }
 }
+
+const itemData = [];
