@@ -16,7 +16,14 @@ export default function Dashboard() {
   const { photos, isPhotosLoading } = usePhoto(activeAlbumId);
   if (isAlbumsLoading) {
     return (
-      <Box sx={{ marginTop: "5rem", textAlign: "center" }}>
+      <Box
+        sx={{
+          height: "10rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <CircularProgress />
       </Box>
     );
