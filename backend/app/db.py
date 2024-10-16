@@ -21,7 +21,7 @@ class Album:
             "desc TEXT NULL)",
         )
 
-    def create(self, name: str, desc: str | None) -> None:
+    def create(self, name: str, desc: str | None) -> Any:  # noqa: ANN401
         self.cursor.execute(
             "INSERT INTO album(name,desc) VALUES (?,?)",
             (name, desc),
@@ -33,7 +33,7 @@ class Album:
         )
         return self.cursor.fetchone()
 
-    def read(self, _id: int) -> list[Any]:
+    def read(self, _id: int | None) -> list[Any]:
         if _id:
             self.cursor.execute(
                 "SELECT * FROM album WHERE id = ?",
