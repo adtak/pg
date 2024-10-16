@@ -29,8 +29,8 @@ exclude = []
 
 [tool.ruff]
 target-version = "py313"
-select = ["ALL"]
-ignore = []
-fixable = ["ALL"]
-unfixable = []
 line-length = 88
+lint.select = ["ALL"]
+lint.ignore = ["D"]
+lint.fixable = ["ALL"]
+lint.unfixable = []
