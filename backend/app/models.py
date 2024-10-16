@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 
 
-class Album(BaseModel):
-    id: int
+class AlbumAttr(BaseModel):
     name: str
+    desc: str | None = None
+
+
+class Album(AlbumAttr):
+    id: int
