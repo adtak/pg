@@ -1,5 +1,11 @@
+from collections.abc import AsyncGenerator
+
 from app.db import Album, get_db_conn
 
 
-async def album_conn() -> Album:
-    return Album(get_db_conn())
+async def album_db() -> AsyncGenerator[Album, None]:
+    db = Album(get_db_conn())
+    try:
+        yield db
+    finally:
+        db.conn.close()
