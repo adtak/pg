@@ -9,6 +9,7 @@ def get_db_conn() -> sqlite3.Connection:
 class Album:
     def __init__(self, conn: sqlite3.Connection) -> None:
         self.conn = conn
+        self.conn.row_factory = sqlite3.Row
         self.cursor = conn.cursor()
         self.init_table()
 
@@ -22,16 +23,21 @@ class Album:
 
     def create(self, name: str, desc: str | None) -> None:
         self.cursor.execute(
-            "INSERT INTO album(id,name,desc) VALUES (?,?,?)",
+            "INSERT INTO album(name,desc) VALUES (?,?)",
             (name, desc),
         )
         self.conn.commit()
+        self.cursor.execute(
+            "SELECT * FROM album WHERE id = ?",
+            (self.cursor.lastrowid,),
+        )
+        return self.cursor.fetchone()
 
     def read(self, _id: int) -> list[Any]:
         if _id:
             self.cursor.execute(
                 "SELECT * FROM album WHERE id = ?",
-                (_id),
+                (_id,),
             )
         else:
             self.cursor.execute(
