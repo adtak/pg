@@ -15,7 +15,7 @@ ruff:
 
 .PHONY: mypy
 mypy:
-				uv run mypy app/*
+				uv run mypy .
 
 .PHONY: test
 test:
