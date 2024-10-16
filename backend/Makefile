@@ -1,3 +1,7 @@
+.PHONY: dev
+dev:
+				uv run fastapi dev app/main.py
+
 .PHONY: format
 format: black ruff
 
