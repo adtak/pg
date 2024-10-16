@@ -1,0 +1,18 @@
+.PHONY: format
+format: black ruff
+
+.PHONY: black
+black:
+				uv run black app/*
+
+.PHONY: ruff
+ruff:
+				uv run ruff check app/* --no-cache --fix
+
+.PHONY: mypy
+mypy:
+				uv run mypy app/*
+
+.PHONY: test
+test:
+				uv run pytest
