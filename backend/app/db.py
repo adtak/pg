@@ -51,6 +51,7 @@ class Photo:
         self.conn = conn
         self.conn.row_factory = sqlite3.Row
         self.cursor = conn.cursor()
+        self.cursor.execute("PRAGMA foreign_keys = true;")
         self.init_table()
 
     def init_table(self) -> None:
@@ -58,13 +59,16 @@ class Photo:
             "CREATE TABLE IF NOT EXISTS photo("
             "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
             "url TEXT,"
-            "comment TEXT NULL)",
+            "comment TEXT NULL,"
+            "foreign key(album_id) references album(id))",
         )
 
-    def create(self, url: str, comment: str | None) -> Any:  # noqa: ANN401
+    def create(
+        self, url: str, comment: str | None, album_id: int,
+    ) -> Any:  # noqa: ANN401
         self.cursor.execute(
-            "INSERT INTO photo(url,comment) VALUES (?,?)",
-            (url, comment),
+            "INSERT INTO photo(url,comment,album_id) VALUES (?,?,?)",
+            (url, comment, album_id),
         )
         self.conn.commit()
         self.cursor.execute(
