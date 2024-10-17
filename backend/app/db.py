@@ -60,6 +60,7 @@ class Photo:
             "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
             "url TEXT,"
             "comment TEXT NULL,"
+            "album_id INTEGER,"
             "foreign key(album_id) references album(id))",
         )
 
