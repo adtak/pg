@@ -81,11 +81,11 @@ class Photo:
         )
         return self.cursor.fetchone()
 
-    def read(self, _id: int | None) -> list[Any]:
-        if _id:
+    def read(self, album_id: int | None) -> list[Any]:
+        if album_id:
             self.cursor.execute(
-                "SELECT * FROM photo WHERE id = ?",
-                (_id,),
+                "SELECT * FROM photo WHERE album_id = ?",
+                (album_id,),
             )
         else:
             self.cursor.execute(

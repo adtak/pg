@@ -39,10 +39,10 @@ async def post_albums(
 @app.get("/photos")
 async def get_photos(
     db_conn: Annotated[sqlite3.Connection, Depends(db_conn)],
-    photo_id: int | None = None,
+    album_id: int | None = None,
 ) -> list[Photo]:
     photo_table = PhotoTable(db_conn)
-    res = photo_table.read(_id=photo_id)
+    res = photo_table.read(album_id=album_id)
     return [
         Photo(id=r["id"], url=r["url"], comment=r["comment"], album_id=r["album_id"])
         for r in res
