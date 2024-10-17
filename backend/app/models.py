@@ -8,3 +8,12 @@ class AlbumAttr(BaseModel):
 
 class Album(AlbumAttr):
     id: int
+
+
+class PhotoAttr(BaseModel):
+    url: str
+    comment: str | None = None
+
+
+class Photo(PhotoAttr):
+    id: int
