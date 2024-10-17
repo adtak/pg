@@ -64,7 +64,10 @@ class Photo:
         )
 
     def create(
-        self, url: str, comment: str | None, album_id: int,
+        self,
+        url: str,
+        comment: str | None,
+        album_id: int,
     ) -> Any:  # noqa: ANN401
         self.cursor.execute(
             "INSERT INTO photo(url,comment,album_id) VALUES (?,?,?)",
