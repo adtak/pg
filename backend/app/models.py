@@ -13,6 +13,7 @@ class Album(AlbumAttr):
 class PhotoAttr(BaseModel):
     url: str
     comment: str | None = None
+    album_id: int
 
 
 class Photo(PhotoAttr):

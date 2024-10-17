@@ -22,7 +22,10 @@ async def get_photos(
 ) -> list[Photo]:
     photo_table = PhotoTable(db_conn)
     res = photo_table.read(_id=photo_id)
-    return [Photo(id=r["id"], url=r["url"], comment=r["comment"]) for r in res]
+    return [
+        Photo(id=r["id"], url=r["url"], comment=r["comment"], album_id=r["album_id"])
+        for r in res
+    ]
 
 
 @app.post("/photos")
@@ -32,4 +35,6 @@ async def post_photos(
 ) -> Photo:
     photo_table = PhotoTable(db_conn)
     res = photo_table.create(photo.name, photo.desc)
-    return Photo(id=res["id"], url=res["url"], comment=res["comment"])
+    return Photo(
+        id=res["id"], url=res["url"], comment=res["comment"], album_id=res["album_id"],
+    )
