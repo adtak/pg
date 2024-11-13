@@ -5,7 +5,7 @@ import app.db.tables as db
 
 class AlbumAttr(BaseModel):
     name: str
-    desc: str | None = None
+    desc: str
 
 
 class Album(AlbumAttr):
@@ -18,7 +18,7 @@ class Album(AlbumAttr):
 
 class PhotoAttr(BaseModel):
     url: str
-    comment: str | None = None
+    comment: str
     album_id: int
 
 
