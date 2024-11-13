@@ -1,9 +1,20 @@
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
+
 from fastapi import Depends, FastAPI
 
+from app.db.core import init_db
 from app.deps import CreateAlbum, CreatePhoto, ReadAlbum, ReadPhoto
 from app.models import Album, AlbumAttr, Photo, PhotoAttr
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
+    init_db()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/")
