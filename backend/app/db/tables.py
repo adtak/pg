@@ -31,7 +31,7 @@ class Album(Base):
     __tablename__ = "album"
 
     name: Mapped[str] = mapped_column("name", String, nullable=False)
-    desc: Mapped[str] = mapped_column("name", String, nullable=False)
+    desc: Mapped[str] = mapped_column("desc", String, nullable=False)
 
     @classmethod
     def create(cls, session: Session, name: str, desc: str) -> "Album":
@@ -63,8 +63,8 @@ class Album(Base):
 class Photo(Base):
     __tablename__ = "photo"
 
-    url: Mapped[str] = mapped_column("name", String, nullable=False)
-    comment: Mapped[str] = mapped_column("name", String, nullable=False)
+    url: Mapped[str] = mapped_column("url", String, nullable=False)
+    comment: Mapped[str] = mapped_column("comment", String, nullable=False)
     album_id: Mapped[int] = mapped_column(
         "album_id",
         ForeignKey("album.id"),
