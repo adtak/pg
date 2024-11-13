@@ -32,6 +32,6 @@ exclude = []
 target-version = "py313"
 line-length = 88
 lint.select = ["ALL"]
-lint.ignore = ["D"]
+lint.ignore = ["D", "B008"]
 lint.fixable = ["ALL"]
 lint.unfixable = []
