@@ -76,7 +76,7 @@ class Photo(Base):
         album = cls(url=url, comment=comment, album_id=album_id)
         session.add(album)
         session.flush()
-        return cls.read_by_id(session, album.id)
+        return cls.read(session, album.id)
 
     @classmethod
     def read(
