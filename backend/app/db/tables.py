@@ -50,7 +50,7 @@ class Album(Base):
         result = session.scalars(stmt)
         return result.one()
 
-    def update(self, session: Session, name: str, desc: str) -> "Album":
+    def update(self, session: Session, name: str, desc: str) -> None:
         self.name = name
         self.desc = desc
         session.flush()
@@ -83,12 +83,12 @@ class Photo(Base):
         cls,
         session: Session,
         _id: int,
-    ) -> "Album":
+    ) -> "Photo":
         stmt = select(cls).where(cls.id == _id)
         result = session.scalars(stmt)
         return result.one()
 
-    def update(self, session: Session, url: str, comment: str) -> "Album":
+    def update(self, session: Session, url: str, comment: str) -> None:
         self.ur = url
         self.comment = comment
         session.flush()

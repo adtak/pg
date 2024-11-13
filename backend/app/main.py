@@ -34,7 +34,7 @@ async def post_albums(
 async def get_albums(
     album_id: int,
     service: ReadAlbum = Depends(ReadAlbum),
-) -> list[Album]:
+) -> Album:
     return service.run(album_id)
 
 
