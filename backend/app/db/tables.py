@@ -1,7 +1,7 @@
 import datetime as dt
 
-from sqlalchemy import DateTime, func
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import DateTime, ForeignKey, String, func, select
+from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
 
 class Base(DeclarativeBase):
@@ -25,3 +25,74 @@ class Base(DeclarativeBase):
         server_default=func.current_timestamp(),
         server_onupdate=func.current_timestamp(),
     )
+
+
+class Album(Base):
+    __tablename__ = "album"
+
+    name: Mapped[str] = mapped_column("name", String, nullable=False)
+    desc: Mapped[str] = mapped_column("name", String, nullable=False)
+
+    @classmethod
+    def create(cls, session: Session, name: str, desc: str) -> "Album":
+        album = cls(name=name, desc=desc)
+        session.add(album)
+        session.flush()
+        return cls.read_by_id(session, album.id)
+
+    @classmethod
+    def read(
+        cls,
+        session: Session,
+        _id: int,
+    ) -> "Album":
+        stmt = select(cls).where(cls.id == _id)
+        result = session.scalars(stmt)
+        return result.one()
+
+    def update(self, session: Session, name: str, desc: str) -> "Album":
+        self.name = name
+        self.desc = desc
+        session.flush()
+
+    def delete(self, session: Session) -> None:
+        session.delete(self)
+        session.flush()
+
+
+class Photo(Base):
+    __tablename__ = "photo"
+
+    url: Mapped[str] = mapped_column("name", String, nullable=False)
+    comment: Mapped[str] = mapped_column("name", String, nullable=False)
+    album_id: Mapped[int] = mapped_column(
+        "album_id",
+        ForeignKey("album.id"),
+        nullable=False,
+    )
+
+    @classmethod
+    def create(cls, session: Session, url: str, comment: str, album_id: int) -> "Photo":
+        album = cls(url=url, comment=comment, album_id=album_id)
+        session.add(album)
+        session.flush()
+        return cls.read_by_id(session, album.id)
+
+    @classmethod
+    def read(
+        cls,
+        session: Session,
+        _id: int,
+    ) -> "Album":
+        stmt = select(cls).where(cls.id == _id)
+        result = session.scalars(stmt)
+        return result.one()
+
+    def update(self, session: Session, url: str, comment: str) -> "Album":
+        self.ur = url
+        self.comment = comment
+        session.flush()
+
+    def delete(self, session: Session) -> None:
+        session.delete(self)
+        session.flush()
