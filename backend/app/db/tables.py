@@ -38,7 +38,7 @@ class Album(Base):
         album = cls(name=name, desc=desc)
         session.add(album)
         session.flush()
-        return cls.read_by_id(session, album.id)
+        return cls.read(session, album.id)
 
     @classmethod
     def read(
