@@ -42,7 +42,7 @@ async def get_albums(
 async def post_photos(
     photo: PhotoAttr,
     service: CreatePhoto = Depends(CreatePhoto),
-) -> Album:
+) -> Photo:
     return service.run(photo.url, photo.comment, photo.album_id)
 
 
