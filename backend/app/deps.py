@@ -17,7 +17,7 @@ class ReadAlbums:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-    def run(self) -> response.Album:
+    def run(self) -> list[response.Album]:
         with self.session.begin() as session:
             results = Album.read_all(session)
             return [response.Album.from_db(result) for result in results]
@@ -43,11 +43,21 @@ class CreatePhoto:
             return response.Photo.from_db(result)
 
 
+class ReadPhotos:
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def run(self) -> list[response.Photo]:
+        with self.session.begin() as session:
+            results = Photo.read(session)
+            return [response.Photo.from_db(result) for result in results]
+
+
 class ReadPhoto:
     def __init__(self, session: Session) -> None:
         self.session = session
 
     def run(self, _id: int) -> response.Photo:
         with self.session.begin() as session:
-            result = Photo.read(session, _id)
+            result = Photo.read_by_id(session, _id)
             return response.Photo.from_db(result)
