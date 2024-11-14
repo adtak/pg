@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI
 
 from app.db.core import init_db
-from app.deps import CreateAlbum, CreatePhoto, ReadAlbum, ReadPhoto
+from app.deps import CreateAlbum, CreatePhoto, ReadAlbum, ReadAlbums, ReadPhoto
 from app.models import Album, AlbumAttr, Photo, PhotoAttr
 
 
@@ -30,8 +30,15 @@ def post_albums(
     return service.run(album.name, album.desc)
 
 
-@app.get("/albums/{album_id}")
+@app.get("/albums")
 def get_albums(
+    service: ReadAlbums = Depends(ReadAlbums),
+) -> list[Album]:
+    return service.run()
+
+
+@app.get("/albums/{album_id}")
+def get_album(
     album_id: int,
     service: ReadAlbum = Depends(ReadAlbum),
 ) -> Album:

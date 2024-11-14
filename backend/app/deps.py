@@ -13,13 +13,23 @@ class CreateAlbum:
             return response.Album.from_db(result)
 
 
+class ReadAlbums:
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def run(self) -> response.Album:
+        with self.session.begin() as session:
+            results = Album.read_all(session)
+            return [response.Album.from_db(result) for result in results]
+
+
 class ReadAlbum:
     def __init__(self, session: Session) -> None:
         self.session = session
 
     def run(self, _id: int) -> response.Album:
         with self.session.begin() as session:
-            result = Album.read(session, _id)
+            result = Album.read_by_id(session, _id)
             return response.Album.from_db(result)
 
 

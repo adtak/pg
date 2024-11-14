@@ -38,10 +38,19 @@ class Album(Base):
         album = cls(name=name, desc=desc)
         session.add(album)
         session.flush()
-        return cls.read(session, album.id)
+        return cls.read_by_id(session, album.id)
 
     @classmethod
-    def read(
+    def read_all(
+        cls,
+        session: Session,
+    ) -> list["Album"]:
+        stmt = select(cls)
+        result = session.scalars(stmt)
+        return list(result.all())
+
+    @classmethod
+    def read_by_id(
         cls,
         session: Session,
         _id: int,
