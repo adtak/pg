@@ -23,7 +23,7 @@ async def root() -> dict:
 
 
 @app.post("/albums")
-async def post_albums(
+def post_albums(
     album: AlbumAttr,
     service: CreateAlbum = Depends(CreateAlbum),
 ) -> Album:
@@ -31,7 +31,7 @@ async def post_albums(
 
 
 @app.get("/albums/{album_id}")
-async def get_albums(
+def get_albums(
     album_id: int,
     service: ReadAlbum = Depends(ReadAlbum),
 ) -> Album:
@@ -39,7 +39,7 @@ async def get_albums(
 
 
 @app.post("/photos")
-async def post_photos(
+def post_photos(
     photo: PhotoAttr,
     service: CreatePhoto = Depends(CreatePhoto),
 ) -> Photo:
@@ -47,7 +47,7 @@ async def post_photos(
 
 
 @app.get("/photos/{photo_id}")
-async def get_photos(
+def get_photos(
     photo_id: int,
     service: ReadPhoto = Depends(ReadPhoto),
 ) -> Photo:
