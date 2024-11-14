@@ -19,6 +19,7 @@ def get_url() -> str:
     database = os.getenv("DB_NAME")
     return f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"
 
+
 engine = create_engine(get_url(), echo=True, pool_pre_ping=True)
 session_maker = sessionmaker(engine)
 

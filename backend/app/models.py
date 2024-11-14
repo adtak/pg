@@ -28,5 +28,8 @@ class Photo(PhotoAttr):
     @classmethod
     def from_db(cls, photo: db.Photo) -> "Photo":
         return cls(
-            id=photo.id, url=photo.url, comment=photo.comment, album_id=photo.album_id,
+            id=photo.id,
+            url=photo.url,
+            comment=photo.comment,
+            album_id=photo.album_id,
         )
