@@ -63,7 +63,7 @@ def post_photos(
 @app.get("/photos")
 def get_photos(
     service: ReadPhotos = Depends(ReadPhotos),
-) -> Photo:
+) -> list[Photo]:
     return service.run()
 
 

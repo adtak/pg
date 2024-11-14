@@ -49,7 +49,7 @@ class ReadPhotos:
 
     def run(self) -> list[response.Photo]:
         with self.session.begin() as session:
-            results = Photo.read(session)
+            results = Photo.read_all(session)
             return [response.Photo.from_db(result) for result in results]
 
 
