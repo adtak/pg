@@ -1,33 +1,42 @@
 import dotenv
-from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 
 class Recipe(BaseModel):
+    name: str = Field(description="name of the recipe")
     ingredients: list[str] = Field(description="ingredients of the dish")
     steps: list[str] = Field(description="step to make the dish")
 
 
 def main() -> None:
-    output_parser = PydanticOutputParser(pydantic_object=Recipe)
-    prompt = ChatPromptTemplate(
+    prompt1 = ChatPromptTemplate(
         [
             (
                 "system",
-                "ユーザーが入力した料理のレシピを考えてください。¥n¥n{format_instructions}",
+                "ユーザーが入力した料理のレシピを考えてください。",
             ),
             ("human", "{dish}"),
         ],
-    ).partial(
-        format_instructions=output_parser.get_format_instructions(),
     )
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind(
-        response_format={"type": "json_object"},
+    prompt2 = ChatPromptTemplate(
+        [
+            (
+                "system",
+                "ユーザーが入力した料理のレシピを考えてください。レシピには独創的な要素を多分に含めてください。",
+            ),
+            ("human", "{dish}"),
+        ],
     )
-    chain = prompt | model | output_parser
-    result = chain.invoke({"dish": "カレー"})
+    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    chain1 = prompt1 | model.with_structured_output(Recipe)
+    chain2 = prompt2 | model.with_structured_output(Recipe)
+    parallel_chain = RunnableParallel(
+        {"chain1": chain1, "chain2": chain2},
+    )
+    result = parallel_chain.invoke({"dish": "カレー"})
     print(result)  # noqa: T201
 
 
